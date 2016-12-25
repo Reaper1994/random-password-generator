@@ -1,12 +1,31 @@
-*.class
+import java.util.Random;
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
 
-# Package Files #
-*.jar
-*.war
-*.ear
+public class PasswordGenerator 
+{
+    public static void main(String[] args)
+    {
+        int length = 10; // password length
+        System.out.println(generatePswd(length));
+    }
+    static char[] generatePswd(int len)
+    {
+        System.out.println("Your Password:");
+        String charsCaps = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String chars = "abcdefghijklmnopqrstuvwxyz";
+        String nums = "0123456789";
+        String symbols = "!@#$%^&*_=+-/€.?<>)";
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+        String passSymbols = charsCaps + chars + nums + symbols;
+        Random rnd = new Random();
+        
+        char[] password = new char[len];
+        int index = 0;
+        for (int i = 0; i < len; i++) 
+        {
+            password[i] = passSymbols.charAt(rnd.nextInt(passSymbols.length()));
+            
+        }
+        return password;
+    }
+}
